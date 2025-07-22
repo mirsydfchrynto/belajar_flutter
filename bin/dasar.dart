@@ -198,17 +198,19 @@ halau guys nama saya irsyad
   namaorg.removeAt(1); /// hapus bagian list
   print(namaorg[0]);
   print(namaorg);
+  print(namaorg.contains('irsyad')); /// false karena gak ada irsyad didalam list var namaorg
   print(namaorg.length);
 
   /// set
   Set set = { 1,2,3,4,5,6,7,8,9 };
   var anggota = { 'dodo','bambang','joko','dimas','muthu'};
   var number = <int>{};
-
+/// mirip list namun gabisa data nya sama
   print(number);
   print(anggota);
+  print(anggota.contains('dodit')); /// cek value nya ada ga di set
   print(set);
-
+  
   print(number.length);
   number.add(18);
   number.add(13);
@@ -219,8 +221,29 @@ halau guys nama saya irsyad
   number.remove(11);
   print(number);
   print(number.length);
-  
+
+  /// map
+  var tesMap = {
+    1 : 'adam',
+    2 : 'afni',
+    3 : 'irsyad',
+    4 : 'marsha',
+    5 : 'dinda',
+  };
+
+  print(tesMap[3]); /// ambil data
+  print(tesMap.length); /// banyaknya data
+  print(tesMap[2]= 'salwa'); /// ubah data sesuai key [2]
+  tesMap[6]='ranifa';  /// tambah data baru dan key baru
+  print(tesMap);
+
+  /// symbol
+  Symbol cobasymbol = Symbol('1813032005');
+  var cobasymbol2 = #ini_symbol;
+  print(cobasymbol);
+  print(cobasymbol2);
 }
+
 
 String tes () {
   print("hai");
