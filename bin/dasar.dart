@@ -1,4 +1,5 @@
 /// lagi belajar dart dasar!!
+library;
 /*
 ada function void main
 variable (val,final,cons,let)
@@ -31,7 +32,7 @@ void main () {
   /// tipe data
   /// string menyimpan tipe data teks
   String cek = 'hello guys';
-  var hallo = 'tes, ${cek}';
+  var hallo = 'tes, $cek';
   var gini = 'ini adalah \'dart\' \$kerenn ';
   var full = nama + nama2;
   var full2 = "irsyad" "fachryanto";
@@ -179,6 +180,46 @@ halau guys nama saya irsyad
   print(variable is! int);
   print(variable is! bool);
   print(variable is! String);
+
+  /// list
+  List<int> nilaiku = [80, 100, 90, 70];
+  var listt = <String>['ips', 'mtk', 'ipa'];
+  var namaorg = [
+    'nugi',
+    'wisnu',
+    'rapli'
+  ];
+  print(nilaiku[1]); /// ambil bagian perindex
+  print(listt[0]);
+  namaorg.add("tegar");
+  namaorg.add("panji");
+  namaorg.add("ragil"); 
+  namaorg[2]= 'fikal'; /// ganti bagian per index
+  namaorg.removeAt(1); /// hapus bagian list
+  print(namaorg[0]);
+  print(namaorg);
+  print(namaorg.length);
+
+  /// set
+  Set set = { 1,2,3,4,5,6,7,8,9 };
+  var anggota = { 'dodo','bambang','joko','dimas','muthu'};
+  var number = <int>{};
+
+  print(number);
+  print(anggota);
+  print(set);
+
+  print(number.length);
+  number.add(18);
+  number.add(13);
+  number.add(03);
+  number.add(03);
+  number.add(11 );
+  print(number);
+  number.remove(11);
+  print(number);
+  print(number.length);
+  
 }
 
 String tes () {
