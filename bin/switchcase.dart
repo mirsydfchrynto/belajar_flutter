@@ -1,3 +1,4 @@
+
 import 'dart:io';
 
 void main (){
@@ -42,18 +43,31 @@ void diskon (){
   double diskon = 0.10;
 
   print('masukan  nama barang :');
-  String? input1 = stdin.readLineSync();
+  String? input1 = stdin.readLineSync()?.toLowerCase();
 
   print('member ?? (yes/no) : ');
-  String? input2 = stdin.readLineSync();
+  String? input2 = stdin.readLineSync()?.toLowerCase();
 
-  var dipilih = barang[input1]!;
-  var hasil = dipilih * diskon ;
-  print( dipilih - hasil);
-
-  if (input1 != null && input1 == barang ){{
-    var dipilih = barang[input1] ;
-  }
+  var dipilih = null;
+  var hasil = null ;
+  if (input1 != null && input2 == 'yes' && input2 != null ){
+    if (barang.containsKey(input1)){
+      dipilih = barang[input1];
+      hasil = dipilih * diskon ;
+      print('harga ${dipilih} kamu ${dipilih - hasil}');
+    }else{
+      print('data tidak ditemukan');
+    }
+  }else if (input1 != null && input2 == 'no' && input2 != null){
+    if (barang.containsKey(input1)) {
+      dipilih = barang[input1];
+      print('harga normal ${dipilih}, syarat diskon menjadi member');
+    }else{
+      print('data tidak ditemukan');
+    }
+  } else{
+    print('masukan data yang sesuai dan tidak boleh kosong!!');
   }
 
 }
+
