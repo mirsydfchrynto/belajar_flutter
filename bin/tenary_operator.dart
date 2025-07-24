@@ -1,0 +1,13 @@
+void main () {
+  /// contoh dibawah gapake tenary operator
+   var nilai = 70 ;
+   // String ucapan ;
+   // if (nilai > 75 ) {
+   //   print('anda luluss');
+   // }else{
+   //   print('anda belum lulus');
+   // }
+   /// hasil pakai tenary operator
+   var hasil = nilai > 75 ? 'selamat anda lulus' : 'maaf anda belum lulus';
+   print(hasil); ///  lebih singkat dan simple
+}

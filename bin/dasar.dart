@@ -242,6 +242,8 @@ halau guys nama saya irsyad
   var cobasymbol2 = #ini_symbol;
   print(cobasymbol);
   print(cobasymbol2);
+
+
 }
 
 
