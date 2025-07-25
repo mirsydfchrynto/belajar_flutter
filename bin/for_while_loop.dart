@@ -1,3 +1,5 @@
+import 'dart:io';
+
 void main() {
   /// for loop ( perulangan )
   ///  for (init statement ; kondisi ; post statement)
@@ -31,4 +33,37 @@ void main() {
     cek2--;
   } while(cek2 >= 10); /// saya melakukan perulangan mundur dari 100 ke 10, jika dibuat langsung  while(cek2 >= 10);
   /// dia akan mencetak setidak nya satu dan akhirnya false lalu berhenti
+  genap();
+  mundur();
+  cetak();
 }
+
+void genap (){
+  for(var gnap = 2; gnap <= 20 ; gnap +=2 ){
+    print('$gnap');
+  }
+}
+
+void mundur (){
+  var angka = 10;
+  while (angka >= 1){
+    print(angka);
+    angka--;
+  }
+}
+
+void cetak (){
+  stdout.write('masukan angka : ');
+  String? input = stdin.readLineSync()?.trim();
+  // var angka = int.tryParse(input!)??'masukan angka';
+  if (input == null || input.isEmpty){
+    print('masukan angka');
+  } else if (int.tryParse(input)!= null){
+    int angka = int.parse(input);
+    do{
+      print('halo dunia');
+      angka --;
+    }while(angka>0);
+  }
+}
+
