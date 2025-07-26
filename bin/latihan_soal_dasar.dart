@@ -115,7 +115,13 @@ void siswa() {
   var uts = <String, int>{};
   var uas = <String, int>{};
   var akhir = <String, double>{};
-  var peringkat = <int, String> {};
+  var peringkat = <String, int>{
+    'A': 0,
+    'B': 0,
+    'C': 0,
+    'D': 0,
+    'E': 0,
+  };
   String? namamasuk;
   while (true) {
     print('selamat datang di sistem Nilai Siswa Multi-Input\n'
@@ -178,7 +184,7 @@ void siswa() {
           print('DATA MASIH KOSONG !!');
           return;
         }
-        String? hasilfinal ;
+        String? hasilfinal;
         var kelist = nama.toList();
         for (var cek = 0; cek < nama.length; cek++) {
           var hasiltugas1 = tugas[kelist[cek]];
@@ -187,11 +193,11 @@ void siswa() {
           var jadi = (hasiltugas1! * 0.20) +
               (hasiluts1! * 0.30) +
               (hasiltuas1! * 0.50);
-          akhir[kelist[cek]]= jadi ;
+          akhir[kelist[cek]] = jadi;
         }
 
         double total = 0;
-        for ( var i in akhir.values){
+        for (var i in akhir.values) {
           total += i;
         }
 
@@ -221,7 +227,7 @@ void siswa() {
               var jadi = (hasiltugas! * 0.20) +
                   (hasiluts! * 0.30) +
                   (hasiltuas! * 0.50);
-              akhir[siswa]= jadi;
+              akhir[siswa] = jadi;
               var hasil2 = jadi >= 85
                   ? 'A'
                   : jadi >= 75
@@ -240,16 +246,16 @@ void siswa() {
             }
             break;
           case 2:
-            for (var cek = 0 ; cek < akhir.length ; cek ++) {
+            for (var cek = 0; cek < akhir.length; cek++) {
               hasilfinal = akhir[kelist[cek]]! >= 85
                   ? 'A'
                   : akhir[kelist[cek]]! >= 75
-                  ? 'B'
-                  : akhir[kelist[cek]]! >= 65
-                  ? 'C'
-                  : akhir[kelist[cek]]! >= 50
-                  ? 'D'
-                  : 'E';
+                      ? 'B'
+                      : akhir[kelist[cek]]! >= 65
+                          ? 'C'
+                          : akhir[kelist[cek]]! >= 50
+                              ? 'D'
+                              : 'E';
               print('==== DATA SISWA KE-${cek + 1} ====\n'
                   'nama : ${kelist[cek]}\n'
                   'nilai tugas : ${tugas[kelist[cek]]}\n'
@@ -259,14 +265,27 @@ void siswa() {
                   'predikat: $hasilfinal');
             }
             break;
-          case 3 :
+          case 3:
             print('nilai rata rata siswa keseluruhan: $rata');
             break;
           case 4:
-            for (var i = 0 ; i < akhir.length; i++){
-              peringkat[i]= akhir[kelist[i]]! >= 85 ? 'A' : akhir[kelist[i]]! >= 75 ? 'B' : akhir[kelist[i]]! >= 65 ? 'C' : akhir[kelist[i]]! >= 50 ?'D' :'E';
-             }
-            print(peringkat);
+            for( var e = 0; e < akhir.length; e++ ){
+                akhir[kelist[e]]! >= 85
+                  ? peringkat['A']= (peringkat['A']??0)+1
+                  : akhir[kelist[e]]! >= 75
+                  ? peringkat['B'] = (peringkat['B']??0)+1
+                  : akhir[kelist[e]]! >= 65
+                  ? peringkat['C'] = (peringkat['C']??0)+1
+                  : akhir[kelist[e]]! >= 50
+                  ? peringkat['D'] = (peringkat['D']??0)+1
+                  : peringkat['E'] = (peringkat['E']??0)+1;
+            }
+            print('daftar jumlah peringkat\n'
+                'A : ${peringkat['A']} siswa \n'
+                'B : ${peringkat['B']} siswa \n'
+                'C : ${peringkat["C"]} siswa \n'
+                'D : ${peringkat["D"]} siswa \n'
+                'E : ${peringkat["E"]} siswa \n');
             break;
           default:
             print('masukan pilihan menu yang benar !!');
