@@ -122,6 +122,19 @@ void siswa() {
     'D': 0,
     'E': 0,
   };
+
+  String getperingkat(double nilai) {
+    return nilai >= 85
+        ? 'A'
+        : nilai >= 75
+        ? 'B'
+        : nilai >= 65
+        ? 'C'
+        : nilai >= 50
+        ? 'D'
+        : 'E';
+  }
+
   String? namamasuk;
   while (true) {
     print('selamat datang di sistem Nilai Siswa Multi-Input\n'
@@ -218,26 +231,16 @@ void siswa() {
             String? siswa = stdin.readLineSync()?.trim().toLowerCase();
             if (siswa == null || siswa.isEmpty) {
               print('masukan nama !');
-            } else if (!nama.contains(siswa)) {
+            } else if (!akhir.containsKey(siswa)) {
               print('Data tidak ditemukan');
             } else {
               var hasiltugas = tugas[siswa];
               var hasiluts = uts[siswa];
               var hasiltuas = uas[siswa];
-              var jadi = (hasiltugas! * 0.20) +
-                  (hasiluts! * 0.30) +
-                  (hasiltuas! * 0.50);
-              akhir[siswa] = jadi;
-              var hasil2 = jadi >= 85
-                  ? 'A'
-                  : jadi >= 75
-                      ? 'B'
-                      : jadi >= 65
-                          ? 'C'
-                          : jadi >= 50
-                              ? 'D'
-                              : 'E';
-              print('nama : $siswa\n'
+              var jadi = akhir[siswa];
+              var hasil2 = getperingkat(jadi!);
+              print('==== DATA SISWA $siswa ====\n'
+                  'nama : $siswa\n'
                   'nilai tugas : $hasiltugas\n'
                   'nilai uts : $hasiluts\n'
                   'nilai uas : $hasiltuas\n'
@@ -247,15 +250,7 @@ void siswa() {
             break;
           case 2:
             for (var cek = 0; cek < akhir.length; cek++) {
-              hasilfinal = akhir[kelist[cek]]! >= 85
-                  ? 'A'
-                  : akhir[kelist[cek]]! >= 75
-                      ? 'B'
-                      : akhir[kelist[cek]]! >= 65
-                          ? 'C'
-                          : akhir[kelist[cek]]! >= 50
-                              ? 'D'
-                              : 'E';
+              hasilfinal = getperingkat(akhir[kelist[cek]]!);
               print('==== DATA SISWA KE-${cek + 1} ====\n'
                   'nama : ${kelist[cek]}\n'
                   'nilai tugas : ${tugas[kelist[cek]]}\n'
@@ -269,6 +264,7 @@ void siswa() {
             print('nilai rata rata siswa keseluruhan: $rata');
             break;
           case 4:
+            peringkat.updateAll((key, value) => 0);
             for( var e = 0; e < akhir.length; e++ ){
                 akhir[kelist[e]]! >= 85
                   ? peringkat['A']= (peringkat['A']??0)+1
