@@ -263,7 +263,7 @@ void siswa() {
             print('nilai rata rata siswa keseluruhan: $rata');
             break;
           case 4:
-            for (var i = akhir.length ; i > 0; i--){
+            for (var i = 0 ; i < akhir.length; i++){
               peringkat[i]= akhir[kelist[i]]! >= 85 ? 'A' : akhir[kelist[i]]! >= 75 ? 'B' : akhir[kelist[i]]! >= 65 ? 'C' : akhir[kelist[i]]! >= 50 ?'D' :'E';
              }
             print(peringkat);
