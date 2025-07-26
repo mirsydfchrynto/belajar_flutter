@@ -114,11 +114,13 @@ void siswa() {
   var tugas = <String, int>{};
   var uts = <String, int>{};
   var uas = <String, int>{};
+  var akhir = <String, double>{};
+  var peringkat = <int, String> {};
   String? namamasuk;
   while (true) {
     print('selamat datang di sistem Nilai Siswa Multi-Input\n'
         '(1) input siswa\n'
-        '(2) tampilkan data\n'
+        '(2) manajemen data\n'
         '(3) keluar');
     stdout.write('masukan nomor pilihan anda: ');
     int? pilih = int.tryParse(stdin.readLineSync()?.trim() ?? '');
@@ -172,8 +174,32 @@ void siswa() {
         break;
 
       case 2:
+        if (nama.isEmpty) {
+          print('DATA MASIH KOSONG !!');
+          return;
+        }
+        String? hasilfinal ;
+        var kelist = nama.toList();
+        for (var cek = 0; cek < nama.length; cek++) {
+          var hasiltugas1 = tugas[kelist[cek]];
+          var hasiluts1 = uts[kelist[cek]];
+          var hasiltuas1 = uas[kelist[cek]];
+          var jadi = (hasiltugas1! * 0.20) +
+              (hasiluts1! * 0.30) +
+              (hasiltuas1! * 0.50);
+          akhir[kelist[cek]]= jadi ;
+        }
+
+        double total = 0;
+        for ( var i in akhir.values){
+          total += i;
+        }
+
+        double rata = total / akhir.length;
         print('(1) cari data siswa\n'
-            '(2) tampilkan semua data siswa\n');
+            '(2) tampilkan semua data siswa\n'
+            '(3) rata rata seluruh siswa\n'
+            '(4) total siswa berpredikat');
         stdout.write('masukan nomor pilihan anda: ');
         int? pilih2 = int.tryParse(stdin.readLineSync()?.trim() ?? '');
         if (pilih2 == null) {
@@ -192,55 +218,55 @@ void siswa() {
               var hasiltugas = tugas[siswa];
               var hasiluts = uts[siswa];
               var hasiltuas = uas[siswa];
-              var akhir = (hasiltugas! * 0.20) +
+              var jadi = (hasiltugas! * 0.20) +
                   (hasiluts! * 0.30) +
                   (hasiltuas! * 0.50);
-              var hasil = akhir >= 85
+              akhir[siswa]= jadi;
+              var hasil2 = jadi >= 85
                   ? 'A'
-                  : akhir >= 75
+                  : jadi >= 75
                       ? 'B'
-                      : akhir >= 65
+                      : jadi >= 65
                           ? 'C'
-                          : akhir >= 50
+                          : jadi >= 50
                               ? 'D'
                               : 'E';
               print('nama : $siswa\n'
                   'nilai tugas : $hasiltugas\n'
                   'nilai uts : $hasiluts\n'
                   'nilai uas : $hasiltuas\n'
-                  'nilai akhir : $akhir\n'
-                  'predikat: $hasil');
+                  'nilai akhir : ${akhir[siswa]}\n'
+                  'predikat: $hasil2');
             }
             break;
           case 2:
-            if (nama.isEmpty) {
-              print('data masih kosong');
-            }
-            for (var i = 0; i < nama.length; i++) {
-              var kelist = nama.toList();
-              var hasiltugas = tugas[kelist[i]];
-              var hasiluts = uts[kelist[i]];
-              var hasiltuas = uas[kelist[i]];
-              var akhir = (hasiltugas! * 0.20) +
-                  (hasiluts! * 0.30) +
-                  (hasiltuas! * 0.50);
-              var hasil = akhir >= 85
+            for (var cek = 0 ; cek < akhir.length ; cek ++) {
+              hasilfinal = akhir[kelist[cek]]! >= 85
                   ? 'A'
-                  : akhir >= 75
-                      ? 'B'
-                      : akhir >= 65
-                          ? 'C'
-                          : akhir >= 50
-                              ? 'D'
-                              : 'E';
-              print('==== DATA SISWA KE-${i + 1} ====\n'
-                  'nama : ${kelist[i]}\n'
-                  'nilai tugas : $hasiltugas\n'
-                  'nilai uts : $hasiluts\n'
-                  'nilai uas : $hasiltuas\n'
-                  'nilai akhir : $akhir\n'
-                  'predikat: $hasil');
+                  : akhir[kelist[cek]]! >= 75
+                  ? 'B'
+                  : akhir[kelist[cek]]! >= 65
+                  ? 'C'
+                  : akhir[kelist[cek]]! >= 50
+                  ? 'D'
+                  : 'E';
+              print('==== DATA SISWA KE-${cek + 1} ====\n'
+                  'nama : ${kelist[cek]}\n'
+                  'nilai tugas : ${tugas[kelist[cek]]}\n'
+                  'nilai uts : ${uts[kelist[cek]]}\n'
+                  'nilai uas : ${uas[kelist[cek]]}\n'
+                  'nilai akhir : ${akhir[kelist[cek]]}\n'
+                  'predikat: $hasilfinal');
             }
+            break;
+          case 3 :
+            print('nilai rata rata siswa keseluruhan: $rata');
+            break;
+          case 4:
+            for (var i = akhir.length ; i > 0; i--){
+              peringkat[i]= akhir[kelist[i]]! >= 85 ? 'A' : akhir[kelist[i]]! >= 75 ? 'B' : akhir[kelist[i]]! >= 65 ? 'C' : akhir[kelist[i]]! >= 50 ?'D' :'E';
+             }
+            print(peringkat);
             break;
           default:
             print('masukan pilihan menu yang benar !!');
