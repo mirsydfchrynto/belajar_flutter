@@ -16,6 +16,14 @@ void main() {
   /// contoh full syarat var hanya sekali  diawal dimasukan ke dalam init statement
   /// dan angka ++  dibaca ketika diakhir itu bisa dimasukan ke post statement
   /// lebih bersih dan simple
+  ///
+  ///for in
+  //   var yes = {1,2,3,4,5,6,7}; bisa untuik jenis list apapaun
+  //   for ( var ada in yes) {  pakai in agar lebih simple dan lebih cepat
+  //     print(ada);
+  //   }
+
+
   for (var angka = 1; angka <= 10; angka++) {
     print('cek perulangan ke $angka');
   }
